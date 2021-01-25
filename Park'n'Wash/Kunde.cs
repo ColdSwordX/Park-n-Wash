@@ -8,6 +8,10 @@ namespace Park_n_Wash
 {
     class Kunde
     {
-        private int pladsID { get; set; }
+        private static int KundeID;
+        public Kunde()
+        {
+            ++KundeID;
+        }
     }
 }

@@ -11,12 +11,13 @@ namespace Park_n_Wash
         public static int ID { get; set; }
         public double Pris { get; set; }
         public int Tid { get; set; }
+        public Kunde kunde { get; set; }
 
         public Plads()
         {
             ++ID;
         }
-        public int GivPladsID()
+        public int HentPladsID()
         {
             return ID;
         }
