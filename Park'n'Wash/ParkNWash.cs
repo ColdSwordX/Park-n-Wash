@@ -29,5 +29,11 @@ namespace Park_n_Wash
                 allePladser.Add(new Handicap());
             }
         }
+        void menu()
+        {
+            Console.WriteLine("");
+        }
+
+
     }
 }
