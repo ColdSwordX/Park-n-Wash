@@ -8,18 +8,14 @@ namespace Park_n_Wash
 {
     class Plads
     {
-        public static int ID { get; set; }
+        private static int counter;
+        public int ID { get;}
         public double Pris { get; set; }
-        public int Tid { get; set; }
         public Kunde kunde { get; set; }
 
         public Plads()
         {
-            ++ID;
-        }
-        public int HentPladsID()
-        {
-            return ID;
+            ID = ++counter;
         }
     }
 }
