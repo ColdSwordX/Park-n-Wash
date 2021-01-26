@@ -8,12 +8,13 @@ namespace Park_n_Wash
 {
     class Kunde
     {
-        private static int KundeID { get; set; }
+        private int counter;
+        private int kundeID { get; set; }
         public string nanv { get; set; }
         public int tid { get; set; }
         public Kunde()
         {
-            ++KundeID;
+            kundeID = ++counter;
         }
     }
 }
