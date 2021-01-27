@@ -9,12 +9,12 @@ namespace Park_n_Wash
     class Kunde
     {
         private int counter;
-        private int kundeID { get; set; }
-        public string nanv { get; set; }
-        public int tid { get; set; }
+        public int kundeID { get; }
+        public DateTime tid { get; }
         public Kunde()
         {
             kundeID = ++counter;
+            tid = DateTime.Now;
         }
     }
 }

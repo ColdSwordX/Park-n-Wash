@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Park_n_Wash
 {
-    class Handicap : Plads
+    class Handicap : Plads, IPlads
     {
         public Handicap()
         {

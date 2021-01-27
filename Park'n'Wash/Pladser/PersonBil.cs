@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Park_n_Wash
 {
-    class PersonBil : Plads
+    class PersonBil : Plads, IPlads
     {
         public PersonBil()
         {

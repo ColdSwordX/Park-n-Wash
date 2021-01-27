@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace Park_n_Wash
 {
-    class LastbilOgBusser : Plads , IPlads
+    public interface IPlads
     {
-        public LastbilOgBusser()
-        {
-            Pris = 22.67;
-        }
+        int ID { get; }
+        double Pris { get; set; }
     }
 }
