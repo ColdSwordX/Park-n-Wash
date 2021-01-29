@@ -11,6 +11,7 @@ namespace Park_n_Wash
         public LastbilOgBusser()
         {
             Pris = 22.67;
+            AntalPladser = 12;
         }
     }
 }

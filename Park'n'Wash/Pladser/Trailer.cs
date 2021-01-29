@@ -11,6 +11,7 @@ namespace Park_n_Wash
         public Trailer()
         {
             Pris = 7.12;
+            AntalPladser = 10;
         }
     }
 }

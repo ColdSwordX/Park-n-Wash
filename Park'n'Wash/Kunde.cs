@@ -8,13 +8,15 @@ namespace Park_n_Wash
 {
     class Kunde
     {
-        private int counter;
+        private static int counter;
         public int kundeID { get; }
+        public int plads { get; set; }
         public DateTime tid { get; }
-        public Kunde()
+        public Kunde(int PladsID)
         {
             kundeID = ++counter;
             tid = DateTime.Now;
+            plads = PladsID;
         }
     }
 }

@@ -13,7 +13,6 @@ namespace Park_n_Wash
         
         public ParkNWash()
         {
-            Intialice();
             bool live;
             do
             {
@@ -22,28 +21,7 @@ namespace Park_n_Wash
                 Console.ReadLine();
             } while (live);
         }
-        /// <summary>
-        /// Opretter alle de nødvendige elementer inden programmet køre
-        /// </summary>
-        void Intialice()
-        {
-            for (int i = 0; i < 50; i++)
-            {
-                allePladser.Add(new PersonBil());
-            }
-            for (int i = 0; i < 10; i++)
-            {
-                allePladser.Add(new Trailer());
-            }
-            for (int i = 0; i < 12; i++)
-            {
-                allePladser.Add(new LastbilOgBusser());
-            }
-            for (int i = 0; i < 5; i++)
-            {
-                allePladser.Add(new Handicap());
-            }
-        }
+
         void SkrivMenu()            //Udskriver menuen.
         {
             Console.WriteLine("----- Park'n'Wash -----");
@@ -62,11 +40,9 @@ namespace Park_n_Wash
             switch (menuValg)
             {
                 case 1:
-                    GivPlads(OpretKunde(), HvilkenPlads());
+                    HvilkenPlads();
                     break;
                 case 2:
-                    Console.WriteLine("Hvad er deres id?");
-                    frigivPlads(ErDetEtTal(Console.ReadLine()));
                     break;
                 case 10:
                     returnThis = false;
@@ -94,84 +70,121 @@ namespace Park_n_Wash
         /// Finder ud af hvilken plads at brugeern gerne vil have.
         /// </summary>
         /// <returns>sender en string til hvor i navnet på typen af pladsen</returns>
-        private string HvilkenPlads()
+        private void HvilkenPlads()
         {
-            Console.Clear();
-            Console.WriteLine("Hvilken plads skal du bruge?");
-            Console.WriteLine($"1: Person bil --- ");
-            Console.WriteLine("2: Trailer");
-            Console.WriteLine("3: lastbil eller bil");
-            Console.WriteLine("4: Handicapvenlige");
-            Console.WriteLine("5: Igen");
-            int nummer = ErDetEtTal(Console.ReadLine());
+            int nummer;
             string valg;
-            switch (nummer)
+            bool Foundspot;
+            do
             {
-                case 1:
-                    valg = "PersonBil";
-                    break;
-                case 2:
-                    valg = "Trailer";
-                    break;
-                case 3:
-                    valg = "LastbilOgBusser";
-                    break;
-                case 4:
-                    valg = "Handicap";
-                    break;
-                default:
-                    valg = "";
-                    break;
+                Console.Clear();
+                Console.WriteLine("Hvilken plads skal du bruge?");
+                Console.WriteLine("1: Person bil");
+                Console.WriteLine("2: Trailer");
+                Console.WriteLine("3: lastbil eller bil");
+                Console.WriteLine("4: Handicapvenlige");
+                Console.WriteLine("5: Igen");
+                nummer = ErDetEtTal(Console.ReadLine());
+                switch (nummer)
+                {
+                    case 1:
+                        valg = "PersonBil";
+                        break;
+                    case 2:
+                        valg = "Trailer";
+                        break;
+                    case 3:
+                        valg = "LastbilOgBusser";
+                        break;
+                    case 4:
+                        valg = "Handicap";
+                        break;
+                    default:
+                        valg = "";
+                        break;
+                }
+                Foundspot = FandtPlads(valg);
+
+            } while (Foundspot);
+            if (valg != "")
+            {
+                GivPlads(valg);
             }
-            return valg;
         }
         /// <summary>
         /// Tilføjer en kunde til en plads ud fra givet parametor
         /// </summary>
         /// <param name="_kunde">den kunde der skal have en plads.</param>
         /// <param name="plads">Den plads type kunden gerne vil have. </param>
-        private void GivPlads(Kunde _kunde, string plads)
+        private void GivPlads(string plads)
         {
-            bool fandLedig = false;
-            foreach (IPlads item in allePladser)
+            IPlads pladsValg;
+            switch (plads)
             {
-                if (item.GetType().Name == plads )
-                {
-                    Console.WriteLine("--- Udskriver billet ---");
-                    Console.WriteLine($"Her der deres billet nummer: --- {_kunde.kundeID} ---");
-                    Console.WriteLine("Udskriver mere bla bla bla");
-                    fandLedig = true;
+                case "PersonBil":
+                    pladsValg = new PersonBil();
+                    allePladser.Add(pladsValg);
                     break;
-                }
+                case "Trailer":
+                    pladsValg = new PersonBil();
+                    allePladser.Add(pladsValg);
+                    break;
+                case "LastbilOgBusser":
+                    pladsValg = new PersonBil();
+                    allePladser.Add(pladsValg);
+                    break;
+                case "Handicap":
+                default:
+                    pladsValg = new PersonBil();
+                    allePladser.Add(pladsValg);
+                    break;
             }
-            if (!fandLedig)
-            {
-                Console.WriteLine("beklagere vi fandt ikke nogle ledig plads.");
-            }
+            alleKunder.Add(OpretKunde(pladsValg.ID));
         }
         /// <summary>
         /// Opretter en ny kunde og senden kunden tilbage.
         /// </summary>
         /// <returns> Kunde object</returns>
-        private Kunde OpretKunde()
+        private Kunde OpretKunde(int pladsID)
         {
-            alleKunder.Add(new Kunde());
-            return alleKunder.Last<Kunde>();
+            Kunde kunde = new Kunde(pladsID);
+            return kunde;
+        }
+        /// <summary>
+        /// Finder ud af om der er ledige pladser 
+        /// </summary>
+        /// <param name="lederEfter">Hvilken plads type der skal finde ud af om der er plads</param>
+        /// <returns>TRUE hvis der er plads, FALSE hvis der ikke er plads. </returns>
+        private bool FandtPlads(string lederEfter)
+        {
+            bool ledigPlads = true;
+            foreach (IPlads item in allePladser)
+            {
+                if (item.BrugtePladser < item.AntalPladser && item.GetType().Name == lederEfter)
+                {
+                    ledigPlads = true;
+                }
+                else
+                {
+                    ledigPlads = false;
+                }
+            }
+            return ledigPlads;
         }
         /// <summary>
         /// Fjeren 
         /// </summary>
         /// <param name="id">ID på den plads som skal have fjerner sin kunde fra sig.</param>
-        private void frigivPlads(int kundeId)
-        {
-            foreach (Plads item in allePladser)
-            {
-                if (item.kunde.kundeID == kundeId)
-                {
-                    item.FjernEjer();
-                    break;
-                }
-            }
-        }
+        //private void frigivPlads(int kundeId)
+        //{
+        //    foreach (Plads item in allePladser)
+        //    {
+        //        if (item.kunde.kundeID == kundeId)
+        //        {
+        //            item.FjernEjer();
+        //            break;
+        //        }
+        //    }
+        //}
     }
 }

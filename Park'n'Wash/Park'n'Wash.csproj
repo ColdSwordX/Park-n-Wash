@@ -43,6 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Billetter\Billet.cs" />
+    <Compile Include="Billetter\BronceBillet.cs" />
+    <Compile Include="Billetter\GoldBillet.cs" />
+    <Compile Include="Billetter\SilverBillet.cs" />
+    <Compile Include="Interface\IBillet.cs" />
     <Compile Include="Interface\IPlads.cs" />
     <Compile Include="ParkNWash.cs" />
     <Compile Include="Pladser\Handicap.cs" />

@@ -10,5 +10,7 @@ namespace Park_n_Wash
     {
         int ID { get; }
         double Pris { get; set; }
+        int AntalPladser { get; set; }
+        int BrugtePladser { get; set; }
     }
 }

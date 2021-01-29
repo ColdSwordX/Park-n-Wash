@@ -11,6 +11,7 @@ namespace Park_n_Wash
         public PersonBil()
         {
             Pris = 10.23;
+            AntalPladser = 50;
         }
     }
 }

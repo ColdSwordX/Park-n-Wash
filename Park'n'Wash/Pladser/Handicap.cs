@@ -11,6 +11,7 @@ namespace Park_n_Wash
         public Handicap()
         {
             Pris = 9.0;
+            AntalPladser = 5;
         }
     }
 }
