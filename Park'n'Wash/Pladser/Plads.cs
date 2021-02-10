@@ -18,5 +18,9 @@ namespace Park_n_Wash
             ID = ++counter;
             BrugtePladser++;
         }
+        public void FrigivPlads()
+        {
+            BrugtePladser--;
+        }
     }
 }

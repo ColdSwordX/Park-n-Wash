@@ -47,6 +47,7 @@
     <Compile Include="Billetter\BronceBillet.cs" />
     <Compile Include="Billetter\GoldBillet.cs" />
     <Compile Include="Billetter\SilverBillet.cs" />
+    <Compile Include="CarWash\Wash.cs" />
     <Compile Include="Interface\IBillet.cs" />
     <Compile Include="Interface\IPlads.cs" />
     <Compile Include="ParkNWash.cs" />
@@ -58,9 +59,16 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Pladser\Trailer.cs" />
+    <Compile Include="Repository\PladsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\ParkNWash.Common\ParkNWash.Common.csproj">
+      <Project>{982b1e39-fea8-4d83-8ac2-b247c56c58a1}</Project>
+      <Name>ParkNWash.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

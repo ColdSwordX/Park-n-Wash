@@ -12,5 +12,6 @@ namespace Park_n_Wash
         double Pris { get; set; }
         int AntalPladser { get; set; }
         int BrugtePladser { get; set; }
+        void FrigivPlads();
     }
 }

@@ -6,17 +6,44 @@ using System.Threading.Tasks;
 
 namespace Park_n_Wash
 {
-    class Kunde
+    public class Kunde
     {
         private static int counter;
-        public int kundeID { get; }
-        public int plads { get; set; }
-        public DateTime tid { get; }
-        public Kunde(int PladsID)
+        public int KundeID { get; }
+        public int PladsID { get; set; }
+        public DateTime Tid { get; }
+        public IBillet BilletType { get; set; }
+        public Kunde(int _PladsID)
         {
-            kundeID = ++counter;
-            tid = DateTime.Now;
-            plads = PladsID;
+            KundeID = ++counter;
+            Tid = DateTime.Now;
+            PladsID = _PladsID;
+            BilletType = new BronceBillet();
+        }
+        public Kunde(int _PladsID, IBillet _billet)
+        {
+            KundeID = ++counter;
+            Tid = DateTime.Now;
+            PladsID = _PladsID;
+            BilletType = _billet;
+
+        }
+        public void SkiftBilletType(IBillet nyBillet)
+        {
+            BilletType = nyBillet;
+        }
+        /// <summary>
+        /// Opretter en ny kunde og senden kunden tilbage.
+        /// </summary>
+        /// <returns> Kunde object</returns>
+        public static Kunde OpretKunde(int pladsID)
+        {
+            Kunde kunde = new Kunde(pladsID);
+            return kunde;
+        }
+        public void frigivPlads()
+        {
+            PladsID = 0;
         }
     }
 }
